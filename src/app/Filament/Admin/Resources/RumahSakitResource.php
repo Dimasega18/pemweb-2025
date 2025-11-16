@@ -23,7 +23,33 @@ class RumahSakitResource extends Resource
     {
         return $form
             ->schema([
-                //
+                Forms\Components\TextInput::make('kode_rs')
+                    ->required()
+                    ->maxLength(20),
+                Forms\Components\TextInput::make('nama_rs')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\Textarea::make('alamat')
+                    ->required()
+                    ->columnSpanFull(),
+                Forms\Components\TextInput::make('kota')
+                    ->required()
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('provinsi')
+                    ->required()
+                    ->maxLength(100),
+                Forms\Components\TextInput::make('telepon')
+                    ->tel()
+                    ->maxLength(20)
+                    ->default(null),
+                Forms\Components\TextInput::make('email')
+                    ->email()
+                    ->maxLength(255)
+                    ->default(null),
+                Forms\Components\TextInput::make('status')
+                    ->required(),
+                Forms\Components\TextInput::make('tipe_rs')
+                    ->required(),
             ]);
     }
 
@@ -31,7 +57,28 @@ class RumahSakitResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('kode_rs')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('nama_rs')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('kota')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('provinsi')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('telepon')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('status'),
+                Tables\Columns\TextColumn::make('tipe_rs'),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
+                Tables\Columns\TextColumn::make('updated_at')
+                    ->dateTime()
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 //
